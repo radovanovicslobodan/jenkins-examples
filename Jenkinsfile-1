@@ -3,6 +3,10 @@ pipeline {
         label 'docker-agent-node'
     }
 
+    triggers {
+        githubPush()
+    }
+
     environment {
         GITHUB_TOKEN = credentials('github-token')  // loads secret text
         AWS_CREDENTIALS = credentials('aws-credentials')
