@@ -3,10 +3,14 @@ pipeline {
         label 'docker-agent-node'
     }
 
+    environment {
+        GITHUB_TOKEN = credentials('github-token')  // loads secret text
+    }
+
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World!!!'
+                echo 'Hello World!!! ${GITHUB_TOKEN}'
             }
         }
     }
