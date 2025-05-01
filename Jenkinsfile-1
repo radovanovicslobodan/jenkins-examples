@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World!!! ${GITHUB_TOKEN}'
+                echo "Hello World!!! ${GITHUB_TOKEN}"
             }
         }
     }
