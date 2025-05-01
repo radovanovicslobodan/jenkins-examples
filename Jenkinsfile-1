@@ -5,12 +5,17 @@ pipeline {
 
     environment {
         GITHUB_TOKEN = credentials('github-token')  // loads secret text
+        AWS_CREDENTIALS = credentials('aws-credentials')
     }
 
     stages {
         stage('Hello') {
-            steps {
-                echo "Hello World!!! ${GITHUB_TOKEN.take(5)}"
+            script {
+                // Parse JSON using readJSON
+                def creds = readJSON text: AWS_CREDENTIALS
+                
+                echo "Client Email: ${creds.access_key}"
+                echo "Private Key: ${creds.secret_key.take(20)}..."  // Partial view
             }
         }
     }
