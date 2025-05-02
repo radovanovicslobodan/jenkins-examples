@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Starting the build..."
+                script {
+                    // Simulate a failed build by throwing an exception
+                    error "❌ Simulated build failure!"
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo "🚨 The build failed as expected!"
+            // You can add real actions here like:
+            // - Send email
+            // - Notify Slack
+            // - Trigger another job
+        }
+        success {
+            echo "✅ This will never run because we forced a failure."
+        }
+        always {
+            echo "🏁 This runs no matter what — good for cleanup tasks."
+        }
+    }
+}
