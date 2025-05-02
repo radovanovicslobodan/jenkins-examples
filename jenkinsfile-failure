@@ -7,7 +7,7 @@ pipeline {
                 echo "Starting the build..."
                 script {
                     // Simulate a failed build by throwing an exception
-                    error "❌ Simulated build failure!"
+                    // error "❌ Simulated build failure!"
                 }
             }
         }
