@@ -5,21 +5,24 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Starting the build..."
-                echo "✅ Build completed successfully!"
+                script {
+                    // Simulate a failed build by throwing an exception
+                    error "❌ Simulated build failure!"
+                }
             }
         }
     }
 
     post {
-        success {
-            echo "🎉 The build succeeded successfully!"
-            // You can add real actions here like:
-            // - Archive artifacts
-            // - Notify team of success
-            // - Trigger downstream job
-        }
         failure {
-            echo "🚫 This will NOT run because the build succeeded."
+            echo "🚨 The build failed as expected!"
+            // You can add real actions here like:
+            // - Send email
+            // - Notify Slack
+            // - Trigger another job
+        }
+        success {
+            echo "✅ This will never run because we forced a failure."
         }
         always {
             echo "🏁 This runs no matter what — good for cleanup tasks."
